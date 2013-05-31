@@ -59,8 +59,6 @@ class CacheBust(object):
         >>> 'http://localhost/static/file.css?_=394a82fdd72eed3ac45d113bd8af554e'
     """
 
-    cache = {}
-
     def __init__(self, settings):
         """Takes settings from app registry, builds CacheBust accordingly.
         Config options:
@@ -108,6 +106,8 @@ class CacheBust(object):
             setattr(self, pmkey, pmval)
         else:
             setattr(self, pmkey, DEFAULT_CONFIG[pmkey])
+
+        self.cache = {}
 
     def __call__(self, request, filename, **kwargs):
         """Returns filename via ``pyramid.request.Request.static_path``
