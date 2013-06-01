@@ -2,13 +2,18 @@
 Bust cache on static assets via query string params.
 
 ## Installation
+For now, install from github:
+
+    pip install git+git://github.com/maisano/pyramid_cachebust.git#egg=pyramid_cachebust
+
+## Setup
 Add to your configurator via the `include` method:
 
     config = Configurator()
     config.include('pyramid_cachebust')
     config.add_static_view('static', 'myapp:static')
 
-Boom. Now you've got two new methods applied to `Request`: `cachebusted_path` and `cachebusted_url`.
+Now `pyramid.request.Request` has two new methods: `cachebusted_path` and `cachebusted_url`. These methods are wrappers for `request.static_path` and `request.static_url`, with the addition of tagging on cache-busting query parameters:
 
     request.cachebusted_path('myapp:static/file.css')
     >>> '/static/file.css?_=394a82fdd72eed3ac45d113bd8af554e'
