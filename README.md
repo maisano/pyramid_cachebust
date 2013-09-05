@@ -21,7 +21,7 @@ Now `pyramid.request.Request` has two new methods: `cachebusted_path` and `cache
     request.cachebusted_url('myapp:static/file.css')
     >>> 'http://localhost/static/file.css?_=394a82fdd72eed3ac45d113bd8af554e'
 
-The querystring gets generated in one of two ways. The default is an MD5 hexdiest of the file contents. The alternative is the file's mtime. Generation of the hash/lookup of the mtime happens once per asset. Results are cached and served upon resultant calls.
+The querystring gets generated in one of two ways. The default is an MD5 hexdigest of the file contents. The alternative is the file's mtime. Generation of the hash/lookup of the mtime happens once per asset. Results are cached and served upon resultant calls.
 
 ## Configuration
 To place in your Pyramid `.ini`:
