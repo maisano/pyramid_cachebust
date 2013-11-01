@@ -168,7 +168,10 @@ class CacheBust(object):
         fhash = md5()
 
         with open(file_loc) as opened:
-            fhash.update(opened.read())
+            while True:
+                result = opened.read(1<<20)
+                if not result: break
+                fhash.update(result)
 
         return fhash.hexdigest()
 
