@@ -101,7 +101,7 @@ class CacheBust(object):
         pmkey = 'method'
         if pmkey in settings:
             pmval = settings[pmkey]
-            if pmval not in ('md5', 'mtime', 'start'):
+            if pmval not in ('md5', 'mtime', 'init'):
                 raise InvalidConfig(
                     'cachebust.method must be md5 or mtime'
                 )
@@ -110,13 +110,13 @@ class CacheBust(object):
             setattr(self, pmkey, DEFAULT_CONFIG[pmkey])
 
         self.cache = {}
-        self.start_time = int(time())
+        self.init_time = int(time())
 
     def __call__(self, request, filename, **kwargs):
         """Returns filename via ``pyramid.request.Request.static_path``
         with query param.
 
-        MD5, mtime, or start lookups happen once and are subsequently
+        MD5, mtime, or init lookups happen once and are subsequently
         taken from ``self.cache`` dict.
 
         :param filename: name of file
@@ -137,7 +137,7 @@ class CacheBust(object):
             method_map = {
                 'md5': self._get_file_hash,
                 'mtime': self._get_file_mtime,
-                'start': lambda _: self.start_time
+                'init': lambda _: self.init_time
             }
 
             self.cache[filename] = method_map[self.method](abspath)
