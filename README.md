@@ -30,5 +30,5 @@ To place in your Pyramid `.ini`:
 |-------------------------|---------|-----------|-------------
 | cachebust.enabled       | bool    | true      | toggles plugin on/off
 | cachebust.reload_files  | bool    | false     | when true, cache is ignored and query param is calculated on every request
-| cachebust.method        | str     | md5       | method of file calculation (md5 or mtime)
+| cachebust.method        | str     | md5       | method of file calculation (md5, mtime or start)
 | cachebust.param_key     | str     | _         | key of query param

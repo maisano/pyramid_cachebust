@@ -1,5 +1,7 @@
 from os import stat
 
+from time import time
+
 from hashlib import md5
 
 from pyramid.path import AssetResolver
@@ -67,7 +69,7 @@ class CacheBust(object):
 
         `cachebust.reload_files` -- ignores cached hashes/mtimes
 
-        `cachebust.param_method` -- md5 or mtime
+        `cachebust.param_method` -- md5, mtime, start
 
         `cachebust.param_key` -- query string param key
 
@@ -99,7 +101,7 @@ class CacheBust(object):
         pmkey = 'method'
         if pmkey in settings:
             pmval = settings[pmkey]
-            if pmval not in ('md5', 'mtime'):
+            if pmval not in ('md5', 'mtime', 'start'):
                 raise InvalidConfig(
                     'cachebust.method must be md5 or mtime'
                 )
@@ -108,12 +110,13 @@ class CacheBust(object):
             setattr(self, pmkey, DEFAULT_CONFIG[pmkey])
 
         self.cache = {}
+        self.start_time = int(time())
 
     def __call__(self, request, filename, **kwargs):
         """Returns filename via ``pyramid.request.Request.static_path``
         with query param.
 
-        MD5 hash or mtime look ups happen once and are subsequently
+        MD5, mtime, or start lookups happen once and are subsequently
         taken from ``self.cache`` dict.
 
         :param filename: name of file
@@ -133,7 +136,8 @@ class CacheBust(object):
 
             method_map = {
                 'md5': self._get_file_hash,
-                'mtime': self._get_file_mtime
+                'mtime': self._get_file_mtime,
+                'start': lambda _: self.start_time
             }
 
             self.cache[filename] = method_map[self.method](abspath)
