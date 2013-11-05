@@ -2,9 +2,9 @@
 Bust cache on static assets via query string params.
 
 ## Installation
-For now, install from github:
+Via pip:
 
-    pip install git+git://github.com/maisano/pyramid_cachebust.git#egg=pyramid_cachebust
+    pip install pyramid_cachebust
 
 ## Setup
 Add to your configurator via the `include` method:
