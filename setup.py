@@ -1,3 +1,8 @@
+# Copyright (C) 2014 Richard Maisano
+#
+# This module is part of pyramid_cachebust and is released under
+# the MIT License: http://opensource.org/licenses/MIT
+
 import os
 
 from setuptools import setup, find_packages
@@ -20,6 +25,7 @@ setup(name='pyramid_cachebust',
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.4",
+        "License :: OSI Approved :: MIT License",
         ],
       keywords='web wsgi pylons pyramid cachebust',
       author="maisano",
@@ -27,6 +33,7 @@ setup(name='pyramid_cachebust',
       maintainer="maisano",
       maintainer_email="rickmaisano@gmail.com",
       url="https://github.com/maisano/pyramid_cachebust",
+      license='MIT',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
