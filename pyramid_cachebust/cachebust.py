@@ -103,7 +103,7 @@ class CacheBust(object):
             pmval = settings[pmkey]
             if pmval not in ('md5', 'mtime', 'init'):
                 raise InvalidConfig(
-                    'cachebust.method must be md5 or mtime'
+                    'cachebust.method must be md5, mtime, or init'
                 )
             setattr(self, pmkey, pmval)
         else:
@@ -171,7 +171,7 @@ class CacheBust(object):
 
         fhash = md5()
 
-        with open(file_loc) as opened:
+        with open(file_loc, 'rb') as opened:
             while True:
                 result = opened.read(1<<20)
                 if not result: break
