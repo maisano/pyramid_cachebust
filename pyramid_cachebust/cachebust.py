@@ -79,7 +79,7 @@ class CacheBust(object):
 
         settings = {
             k.replace('cachebust.', ''): v
-            for k, v in settings.iteritems()
+            for k, v in settings.items()
             if k.startswith('cachebust.')
         }
 

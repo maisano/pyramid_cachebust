@@ -8,7 +8,7 @@ requires = [
 ]
 
 setup(name='pyramid_cachebust',
-      version='0.1',
+      version='0.1.1',
       description='Nascent cache busting for the Pyramid web framework',
       classifiers=[
         "Framework :: Pyramid",
