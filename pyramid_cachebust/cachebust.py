@@ -1,8 +1,3 @@
-# Copyright (C) 2014 Richard Maisano
-#
-# This module is part of pyramid_cachebust and is released under
-# the MIT License: http://opensource.org/licenses/MIT
-
 from os import stat
 
 from time import time
